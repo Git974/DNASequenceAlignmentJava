@@ -1,0 +1,26 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 1, 2019, 5:32:05 PM
+    Author     : SHOAIB
+*/
+html{ font-family: 'Century Gothic';margin:auto;} 
+td{ 
+    width:30px;
+    height:30px;
+    padding:7px;
+    font-size:18px;
+    text-align:center;
+    background-color:#222830;
+    color:#b0b5b5;
+} 
+th{ width:30px;height:30px;
+    font-size:22px;
+    font-weight:bold;
+    text-align:center;
+    background-color:#222830;
+    color:#b0b5b5;
+} 
