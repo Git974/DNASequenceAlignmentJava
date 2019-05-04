@@ -113,13 +113,23 @@ class Matrix{
                 if(tail.getRow() == 0 && tail.getCol() == 0){
                     
                 }
-                else if(tail.getRow() == 0){
+                else if(tail.getRow() == 0 && tail.getCol() != 0){
                     this.alignedSequenceA.append("_");
                     this.alignedSequenceB.append(this.sequenceB.charAt(tail.getCol()-1));
+//                    System.out.println("Called col=" + tail.getCol());
                 }
-                else if(tail.getCol() == 0){
-                    this.alignedSequenceA.append(this.sequenceA.charAt(tail.getRow()-1));
-                    this.alignedSequenceB.append("_");
+                else if(tail.getCol() == 0 && tail.getRow() != 0){
+                    if(this.sequenceA.length() < this.sequenceB.length()){
+                        this.alignedSequenceA.append("_");
+                        
+                        this.alignedSequenceB.append(this.sequenceB.charAt(tail.getCol()+1));
+                        System.out.println("Called col=" + tail.getCol()+1);
+                    }else{
+                        this.alignedSequenceA.append(this.sequenceA.charAt(tail.getRow()-1));
+                        this.alignedSequenceB.append("_");
+                        System.out.println("Called row=" + tail.getRow());
+                    }
+                    
                 }
                 else{
                     int trow = tail.getFrom().getRow();                
@@ -133,17 +143,19 @@ class Matrix{
                         this.alignedSequenceA.append(this.sequenceA.charAt(tail.getRow()-1));
                         this.alignedSequenceB.append("_");
                         row = tail.getRow();
-                        System.out.println("Inner Handler");
+                        System.out.println("Inner Handler ROw");
                     }else if(trow == tail.getRow() && tcol != tail.getCol()){
                         this.alignedSequenceA.append("_");
                         this.alignedSequenceB.append(this.sequenceB.charAt(tail.getCol()-1));
                         col = tail.getCol();
+                        System.out.println("Inner Handler Col");
                     }else{
                         this.alignedSequenceA.append(this.sequenceA.charAt(tail.getRow()-1));
                         this.alignedSequenceB.append(this.sequenceB.charAt(tail.getCol()-1));
                         row = tail.getRow();
                         col = tail.getCol();
-                    }                 
+                        System.out.println("Called 2");
+                    }   
                 }
             }
             else if(row != tail.getRow() && col == tail.getCol()){
@@ -188,13 +200,17 @@ class Matrix{
         }
         row = row - 2;
         col = col - 2;
-        if(row > 0){
+        while(row > 0){
             row = row - 1;
             System.out.println("Remaining Sequence A and row=" + row);
             this.alignedSequenceA.append(this.sequenceA.charAt(row));
             this.alignedSequenceB.append("_");
-        }else if(col > 0){
+        }
+        while(col > 0){
+            col = col - 1;
             System.out.println("Remaining Sequence B and col=" + col);
+            this.alignedSequenceA.append("_");
+            this.alignedSequenceB.append(this.sequenceB.charAt(col));
         }
     }
 
